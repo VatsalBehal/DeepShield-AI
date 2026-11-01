@@ -1,0 +1,63 @@
+# ==============================================================================
+# DeepShield AI - Global Project Configuration
+# ==============================================================================
+project:
+  name: "DeepShield AI"
+  description: "Deepfake Image and Video Detection System using ResNet-18"
+  version: "1.0.0"
+
+# Model Architecture Configuration
+model:
+  architecture: "resnet18"
+  pretrained: true
+  num_classes: 2
+  dropout_rate: 0.3
+  # Whether to freeze initial convolutional layers during initial training epochs
+  freeze_backbone: false
+
+# Dataset Settings & Class Mappings
+dataset:
+  root_dir: "data"
+  train_dir: "data/train"
+  val_dir: "data/val"
+  test_dir: "data/test"
+  class_names:
+    - "real"
+    - "fake"
+  class_to_idx:
+    real: 0
+    fake: 1
+
+# Image & Face Preprocessing Parameters
+preprocessing:
+  image_size: 224
+  # Standard ImageNet normalization coefficients for torchvision pretrained models
+  normalize_mean: [0.485, 0.456, 0.406]
+  normalize_std: [0.229, 0.224, 0.225]
+  # Face detection settings using OpenCV Haar Cascade
+  face_detection_enabled: true
+  face_crop_margin: 0.20 # 20% margin around face bounding box to capture jawline and hair
+  min_face_size: [40, 40]
+  cascade_scale_factor: 1.1
+  cascade_min_neighbors: 5
+
+# Training Hyperparameters (tuned for 8GB RAM laptops and Google Colab T4)
+training:
+  batch_size: 16
+  num_epochs: 10
+  learning_rate: 0.0001
+  weight_decay: 0.0001
+  num_workers: 0 # Windows multiprocessing safe default
+  random_seed: 42
+  checkpoint_dir: "models"
+  checkpoint_name: "best_model.pth"
+  early_stopping_patience: 4
+
+# Inference & Video Sampling Settings
+inference:
+  default_checkpoint: "models/best_model.pth"
+  confidence_threshold: 0.50
+  video:
+    frame_interval: 10 # Sample every 10th frame to avoid redundant consecutive frames
+    max_frames: 30     # Upper limit on frames to process per video
+    aggregation_method: "mean" # Choices: "mean", "median", "max", "trimmed_mean"

@@ -1,0 +1,19 @@
+{
+    "total_valid_samples": 20,
+    "total_corrupted_samples": 0,
+    "split_counts": {
+        "train": {
+            "real": 6,
+            "fake": 6
+        },
+        "val": {
+            "real": 2,
+            "fake": 2
+        },
+        "test": {
+            "real": 2,
+            "fake": 2
+        }
+    },
+    "manifest_path": "data\\manifest.csv"
+}

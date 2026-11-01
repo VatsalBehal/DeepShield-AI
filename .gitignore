@@ -1,0 +1,54 @@
+# Python virtual environment
+.venv/
+env/
+venv/
+ENV/
+
+# Python byte-code and cache
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Large model weights (keep deployable best_model.pth and README)
+models/*.pth
+!models/best_model.pth
+models/best_model_full.pth
+models/*.pt
+models/*.onnx
+!models/README.md
+
+# Datasets and video dumps (keep README)
+data/train/
+data/val/
+data/test/
+data/raw/
+data/*.zip
+data/*.tar
+data/*.gz
+!data/README.md
+
+# Temporary and upload directories
+temp/
+uploads/
+sample_inputs/*.mp4
+sample_inputs/*.avi
+!sample_inputs/README.md
+
+# OS specific files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE & Editor caches
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Evaluation generated graphs (optional to commit or ignore)
+outputs/*.png
+outputs/*.csv
+outputs/*.json
+outputs/*.txt
+!outputs/README.md

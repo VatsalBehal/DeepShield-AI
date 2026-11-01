@@ -33,6 +33,7 @@ temp/
 uploads/
 sample_inputs/*.mp4
 sample_inputs/*.avi
+sample_inputs/grid_faces/
 !sample_inputs/README.md
 
 # OS specific files
